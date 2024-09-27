@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +11,13 @@ namespace SimpleTaskListApp
     {
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
+        public DateTime DueDate { get; set; }
         
-
-        public Task(string description)
+        public Task(string description, DateTime dueDate)
         {
             Description = description;
             IsCompleted = false;            
+            DueDate = dueDate;
         }
 
         public void MarkAsCompleted()
@@ -28,13 +29,15 @@ namespace SimpleTaskListApp
         {
             //return result either mark or not mark
             string status = IsCompleted ? "[x]" : "[ ]";
-            return $"{status} {Description}";
+            return $"{status} {Description} (Due: {DueDate.ToShortDateString()})";
         }
     }
 
     class Program
     {
         static List<Task> tasks = new List<Task>();
+
+        static bool IsCheckTaskMark = false;
         static void Main(string[] args)
         {
             bool exit = false;
@@ -86,7 +89,20 @@ namespace SimpleTaskListApp
         {
             Console.Write("Enter task description: ");
             string description = Console.ReadLine();
-            tasks.Add(new Task(description));
+            DateTime dueDate;
+            while (true)
+            {
+                Console.Write("Enter task due date (dd/MM/yyyy): ");
+                if (DateTime.TryParse(Console.ReadLine(), out dueDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date format. Please try again.");
+                }
+            }
+            tasks.Add(new Task(description, dueDate));
             Console.WriteLine("Task added. Press any key to continue...");
             Console.ReadKey();
         }
@@ -97,6 +113,9 @@ namespace SimpleTaskListApp
             if (tasks.Count == 0)
             {
                 Console.WriteLine("No tasks available.");
+                Console.WriteLine("Press any key to return to the menu...");
+                Console.ReadKey();
+                return;
             }
             else
             {
@@ -105,13 +124,18 @@ namespace SimpleTaskListApp
                     Console.WriteLine($"{i + 1}. {tasks[i]}");
                 }
             }
+        
             Console.WriteLine("Press any key to return to the menu...");
             Console.ReadKey();
         }
 
         static void MarkTaskAsDone()
         {
+            IsCheckTaskMark = true;
             ViewTasks();
+            if (tasks.Count == 0)
+                return;
+
             Console.Write("Enter the task number to mark as completed: ");
             if (int.TryParse(Console.ReadLine(), out int taskNumber) && taskNumber > 0 && taskNumber <= tasks.Count)
             {
@@ -128,6 +152,7 @@ namespace SimpleTaskListApp
 
         static void DeleteTask()
         {
+            IsCheckTaskMark = false;
             ViewTasks();
             Console.Write("Enter the task number to delete: ");
             if (int.TryParse(Console.ReadLine(), out int taskNumber) && taskNumber > 0 && taskNumber <= tasks.Count)

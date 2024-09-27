@@ -1,0 +1,7 @@
+C:\Sandbox_SimpleTaskListApp\SimpleTaskListApp\obj\Debug\SimpleTaskListApp.csprojAssemblyReference.cache
+C:\Sandbox_SimpleTaskListApp\SimpleTaskListApp\obj\Debug\SimpleTaskListApp.csproj.CoreCompileInputs.cache
+C:\Sandbox_SimpleTaskListApp\SimpleTaskListApp\bin\Debug\SimpleTaskListApp.exe.config
+C:\Sandbox_SimpleTaskListApp\SimpleTaskListApp\bin\Debug\SimpleTaskListApp.exe
+C:\Sandbox_SimpleTaskListApp\SimpleTaskListApp\bin\Debug\SimpleTaskListApp.pdb
+C:\Sandbox_SimpleTaskListApp\SimpleTaskListApp\obj\Debug\SimpleTaskListApp.exe
+C:\Sandbox_SimpleTaskListApp\SimpleTaskListApp\obj\Debug\SimpleTaskListApp.pdb

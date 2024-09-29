@@ -1,0 +1,16 @@
+Test procedure: 
+
+1. Test basic function - 
+i. Add Task 
+ii. View Task 
+iii. Mark Task as completed
+iv. Delete Task  
+v. Exit.
+
+2. Test for invalid input e.g. number, date format
+
+3. Test store data function -
+i. LoadfromFile()
+ii. SaveToFile()
+
+
